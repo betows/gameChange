@@ -32,21 +32,48 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
+    '@nuxtjs/vuetify'
   ],
-
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'access',
+          maxAge: 1800,
+          global: true
+        },
+        refreshToken: {
+          property: 'refresh',
+          data: 'refresh',
+          maxAge: 60 * 60 * 24 * 30
+        },
+        user: {
+          property: false, // Set to false since you're returning the user object directly
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/authentication/login/', method: 'post' },
+          user: { url: '/authentication/user/', method: 'get' }
+          // Add other endpoints as needed
+        }
+      }
+    }
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next',
+    'cookie-universal-nuxt'
   ],
+  store: true,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://127.0.0.1:8000/api/'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

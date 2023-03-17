@@ -1,83 +1,123 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
+  <div>
+    <v-parallax src="https://source.unsplash.com/random/1600x900" height="400">
+      <v-row class="fill-height" align="center" justify="center">
+        <v-col class="text-center">
+          <h1 class="display-2 font-weight-bold white--text">
+            Welcome to GameChange
+          </h1>
+          <v-btn color="primary" outlined large class="mt-5">
+            Get Started
           </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+        </v-col>
+      </v-row>
+    </v-parallax>
+
+    <v-container>
+      <v-row class="my-10">
+        <v-col cols="12">
+          <h2 class="text-center mb-6">
+            Features
+          </h2>
+        </v-col>
+        <v-col
+          v-for="feature in features"
+          :key="feature.title"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <v-hover>
+            <v-card
+              slot-scope="{ hover }"
+              :elevation="hover ? 12 : 2"
+              @click="goTo(feature.redirect)"
+            >
+              <v-img :src="feature.image" aspect-ratio="1.5" />
+              <v-card-title>{{ feature.title }}</v-card-title>
+              <v-card-text>{{ feature.description }}</v-card-text>
+            </v-card>
+          </v-hover>
+        </v-col>
+      </v-row>
+
+      <v-divider class="my-12" />
+
+      <v-row class="my-10">
+        <v-col cols="12">
+          <h2 class="text-center mb-6">
+            Gamification Examples
+          </h2>
+        </v-col>
+        <v-col v-for="example in gamificationExamples" :key="example.title" cols="12" sm="6" md="4">
+          <v-hover>
+            <v-card
+              slot-scope="{ hover }"
+              :elevation="hover ? 12 : 2"
+              @click="goTo(example.redirect)"
+            >
+              <v-img :src="example.image" aspect-ratio="1.5" />
+              <v-card-title>{{ example.title }}</v-card-title>
+              <v-card-text>{{ example.description }}</v-card-text>
+            </v-card>
+          </v-hover>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  data () {
+    return {
+      features: [
+        {
+          title: 'Task Management',
+          image: 'https://via.placeholder.com/600x400',
+          description: 'Easily create, assign, and track tasks for your team.',
+          redirect: '/tasks'
+        },
+        {
+          title: 'Progress Tracking',
+          image: 'https://via.placeholder.com/600x400',
+          description: 'Monitor team progress and individual performance with visual analytics.',
+          redirect: '/progress'
+        },
+        {
+          title: 'Team Collaboration',
+          image: 'https://via.placeholder.com/600x400',
+          description: 'Communicate and collaborate with your team in real-time.',
+          redirect: '/collaboration'
+        }
+      ],
+      gamificationExamples: [
+        {
+          title: 'Trading Cards',
+          image: 'https://via.placeholder.com/600x400',
+          description: 'Earn unique trading cards by completing tasks and leveling up.',
+          redirect: '/trading-cards'
+        },
+        {
+          title: 'Battles',
+          image: 'https://via.placeholder.com/600x400',
+          description: 'Challenge your teammates to battles and climb the leaderboard.',
+          redirect: '/battles'
+        },
+        {
+          title: 'Card Trading',
+          image: 'https://via.placeholder.com/600x400',
+          description: 'Trade cards with your teammates to build your ultimate deck.',
+          redirect: '/card-trading'
+        }
+      ]
+    }
+  },
+  methods: {
+    goTo (path) {
+      this.$router.push(path)
+    }
+  }
 }
 </script>
