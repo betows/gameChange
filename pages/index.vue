@@ -6,7 +6,7 @@
           <h1 class="display-2 font-weight-bold white--text">
             Welcome to GameChange
           </h1>
-          <v-btn color="primary" outlined large class="mt-5">
+          <v-btn color="primary" large class="mt-5" @click="$router.push('/personal')">
             Get Started
           </v-btn>
         </v-col>

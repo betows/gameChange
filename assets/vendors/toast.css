@@ -1,0 +1,127 @@
+.successClass {
+    font-family: "Open Sans";
+    display: flex !important;
+    flex-direction: row !important;
+    text-align: center !important;
+    background-color: #212529 !important;
+  }
+  .successClass.bubble.success {
+    border-radius: 4px;
+    padding: 15px 25px;
+  }
+  .successClass:before {
+      content: "";
+      display: block;
+      background: url("../../static/images/success-icon.svg") no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0 16px 0 0;
+  }
+  .successClass .action.ripple {
+    text-transform: none !important;
+    display: flex;
+    margin-left: 36px !important;
+    background: url("../../static/images/close-icon.svg") no-repeat;
+    background-position: center;
+  }
+  .errorClass {
+    z-index: 100000000;
+    font-family: "Open Sans";
+    display: flex !important;
+    flex-direction: row !important;
+    text-align: center !important;
+    background-color: #212529 !important;
+  }
+  .errorClass.bubble.error {
+    border-radius: 4px;
+    padding: 15px 25px;
+  }
+  .errorClass:before {
+      content: "";
+      display: block;
+      background: url("../../static/images/error-icon.svg") no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0 16px 0 0;
+  }
+  .errorClass .action.ripple {
+    text-transform: none !important;
+    display: flex;
+    margin-left: 36px !important;
+    background: url("../../static/images/close-icon.svg") no-repeat;
+    background-position: center;
+  }
+  .generalClass {
+    font-family: "Open Sans";
+    display: flex !important;
+    flex-direction: row !important;
+    text-align: center !important;
+    background-color: #212529 !important;
+  }
+  .generalClass.bubble.info {
+    border-radius: 4px;
+    padding: 15px 25px;
+  }
+  .generalClass:before {
+      content: "";
+      display: block;
+      background: url("../../static/images/info-icon.svg") no-repeat;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0 16px 0 0;
+  }
+  .generalClass .action.ripple {
+    text-transform: none !important;
+    display: flex;
+    margin-left: 36px !important;
+    background: url("../../static/images/close-icon.svg") no-repeat;
+    background-position: center;
+  }
+  .toastFontFamily {
+    font-family: "Open Sans";
+    font-weight: normal !important;
+    display: flex !important;
+    flex-direction: row !important;
+    text-align: center !important;
+    color:#fff !important;
+    background-color: #212529 !important;
+    border-radius: 4px !important;
+  }
+  
+  .toastFontFamily .action.ripple.toastActionStyle:nth-of-type(1) {
+    text-transform: none !important;
+    display: flex;
+    margin: 10px!important;
+    height:36px !important;
+    color: white !important;
+    width:240px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    background-color: rgb(239, 77, 65) !important;
+  }
+  
+  .toastFontFamily .action.ripple.toastActionStyle:nth-of-type(2) {
+    text-transform: none !important;
+    display: flex;
+    margin: 10px!important;
+    height:36px !important;
+    color: #868E96 !important;
+    border:2px solid #868E96 !important;
+    width:240px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    background-color: #212529 !important;
+  }
+  
+  @media only screen and (max-width:800px) {
+    .toastFontFamily {
+      max-width: 100%;
+      flex-direction: column !important;
+      padding: 20px !important;
+    }
+  }

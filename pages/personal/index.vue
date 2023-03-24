@@ -1,90 +1,128 @@
 <template>
   <v-main>
     <v-container>
-      <div v-if="user">
-        <v-card class="v-card">
-          <v-img :src="profilePicture" height="300px" />
-          <input type="file" @change="onFileChange">
-          <v-card-title>{{ user.username }}</v-card-title>
-          <v-card-subtitle>{{ user.email }}</v-card-subtitle>
-          <v-card-text>
-            About me: {{ user.bio }}
-          </v-card-text>
-        </v-card>
-        <v-card class="v-card">
-          <v-card-title>My Team</v-card-title>
-          <v-card-text>
-            <v-select
-              v-model="user.team"
-              :items="teams"
-              :disabled="user.team"
-              label="Select a team"
-            />
-          </v-card-text>
-        </v-card>
-        <v-card class="v-card">
-          <v-card-title>My Accomplishments</v-card-title>
-          <v-card-text>
-            <v-chip-group>
-              <v-chip v-for="achievement in user.achievements" :key="achievement.id">
-                {{ achievement.name }}
-              </v-chip>
-            </v-chip-group>
-          </v-card-text>
-        </v-card>
-        <v-card class="v-card">
-          <v-card-title>My Tasks</v-card-title>
-          <v-card-text>
-            <v-list>
-              <v-list-item v-for="task in user.tasks" :key="task.id">
-                <v-list-item-content>
-                  {{ task.title }}
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
-      </div>
-      <div v-else>
-        <v-alert type="error">
-          User not found or failed to load.
-        </v-alert>
-      </div>
+      <v-row>
+        <v-col cols="12">
+          <h1>Dashboard</h1>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col md="4" sm="12">
+          <profile-section :user="user" />
+        </v-col>
+        <v-col md="8" sm="12">
+          <team-section :teams="teams" />
+          <task-section :tasks="tasks" />
+          <progress-section :progress="progress" />
+          <badge-section :badges="badges" />
+          <collection-section :cards="cards" />
+        </v-col>
+      </v-row>
     </v-container>
   </v-main>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import ProfileSection from '@/components/Personal/ProfileSection.vue'
+import TeamSection from '@/components/Personal/TeamSection.vue'
+import TaskSection from '@/components/Personal/TaskSection.vue'
+import ProgressSection from '@/components/Personal/ProgressSection.vue'
+import BadgeSection from '@/components/Personal/BadgeSection.vue'
+import CollectionSection from '@/components/Personal/CollectionSection.vue'
 
 export default {
+  components: {
+    ProfileSection,
+    TeamSection,
+    TaskSection,
+    ProgressSection,
+    BadgeSection,
+    CollectionSection
+  },
   data () {
     return {
-      teams: [] // Add your list of teams here
-    }
-  },
-  computed: {
-    ...mapState('auth', ['user']), // Map the 'user' state from the 'auth' store
-    profilePicture () {
-      return this.user.profile_picture || ''
-    }
-  },
-  methods: {
-    onFileChange (event) {
-      // Handle file input change event and update user.profile_picture
-      const file = event.target.files[0]
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        this.user.profile_picture = e.target.result
-      }
-      reader.readAsDataURL(file)
+      user: {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        image: 'https://via.placeholder.com/150'
+      },
+      teams: [
+        {
+          id: 1,
+          name: 'Time tecnologia',
+          members: [
+            { name: 'Roberto' }, { name: 'Jhordy' }
+          ]
+        },
+        {
+          id: 2,
+          name: 'Time design',
+          members: [
+            { name: 'Zé' }, { name: 'Mariane' }
+          ]
+        }
+      ],
+      tasks: [
+        {
+          id: 1,
+          title: 'Implementar login',
+          description: 'Implementação do login social usando auth0 enviando para o back end as definições de usuário',
+          deadline: '2023-04-10',
+          status: 'In progress'
+        },
+        {
+          id: 2,
+          title: 'Estilos da página inicial',
+          description: 'Fazer o discovery e decidir os estilos da página incial definindo cores e fontes',
+          deadline: '2023-04-20',
+          status: 'Completed'
+        }
+      ],
+      progress: [
+        {
+          id: 1,
+          title: 'Project 1',
+          completed: 60
+        },
+        {
+          id: 2,
+          title: 'Project 2',
+          completed: 40
+        }
+      ],
+      badges: [
+        {
+          id: 1,
+          name: 'Badge 1',
+          image: 'https://via.placeholder.com/50'
+        },
+        {
+          id: 2,
+          name: 'Badge 2',
+          image: 'https://via.placeholder.com/50'
+        }
+      ],
+      cards: [
+        {
+          id: 1,
+          name: 'Astronaut',
+          class: 'Space Explorer',
+          power: 7,
+          attack: 4,
+          defense: 6,
+          image: 'https://via.placeholder.com/100'
+        },
+        {
+          id: 2,
+          name: 'Cat Knight',
+          class: 'Feline Warrior',
+          power: 5,
+          attack: 6,
+          defense: 3,
+          image: 'https://via.placeholder.com/100'
+        }
+      ]
     }
   }
 }
 </script>
-
-<style scoped>
-.v-card {
-  margin-bottom: 20px;
-}
-</style>

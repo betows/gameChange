@@ -22,8 +22,14 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/auth.js', mode: 'client' }
   ],
-
+  publicRuntimeConfig: {
+    auth: {
+      domain: 'dev-7n0ue64h1ce2zq3z.us.auth0.com',
+      clientId: 'ZOqSBJcW46y5XOAnqNXLp2ClcLr9Hpvi'
+    }
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -34,38 +40,43 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify'
   ],
-  auth: {
+  /* auth: {
     strategies: {
-      local: {
-        token: {
-          property: 'access',
-          maxAge: 1800,
-          global: true
-        },
-        refreshToken: {
-          property: 'refresh',
-          data: 'refresh',
-          maxAge: 60 * 60 * 24 * 30
-        },
-        user: {
-          property: false, // Set to false since you're returning the user object directly
-          autoFetch: true
-        },
-        endpoints: {
-          login: { url: '/authentication/login/', method: 'post' },
-          user: { url: '/authentication/user/', method: 'get' }
-          // Add other endpoints as needed
+      auth0: {
+        domain: 'dev-7n0ue64h1ce2zq3z.us.auth0.com',
+        clientId: 'ZOqSBJcW46y5XOAnqNXLp2ClcLr9Hpvi',
+        audience: 'https://localhost:3000/',
+        responseType: 'code',
+        scope: ['openid', 'profile', 'email'],
+        options: {
+          auth: {
+            responseType: 'token id_token',
+            scope: 'openid profile email'
+          },
+          languageDictionary: {
+            title: 'Game change'
+          },
+          allowShowPassword: true, // Show password visibility toggle
+          allowedConnections: ['Username-Password-Authentication', 'google-oauth2', 'github'] // Add the social connections you enabled in the Auth0 dashboard
         }
       }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/',
+      callback: '/personal'
     }
+  }, */
+  compilerOptions: {
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/toast',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/auth-next',
     'cookie-universal-nuxt'
   ],
   store: true,

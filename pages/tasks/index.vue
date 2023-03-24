@@ -48,6 +48,7 @@
 
 <script>
 export default {
+  middleware: 'auth',
   data () {
     return {
       tasks: [] // Store the tasks data here
