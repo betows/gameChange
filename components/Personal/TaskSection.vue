@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="glass-panel">
     <v-card-title>Minhas tarefas</v-card-title>
     <v-card-text>
       <v-row>
@@ -7,12 +7,12 @@
           v-for="task in tasks"
           :key="task.id"
           xs="12"
-          sm="6"
-          md="4"
-          lg="3"
+          sm="10"
+          md="6"
+          lg="8"
           class="mb-4"
         >
-          <v-card>
+          <v-card class="glass-panel">
             <v-card-title>{{ task.title }}</v-card-title>
             <v-card-subtitle>{{ task.description }}</v-card-subtitle>
             <v-card-text>
@@ -38,4 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 15px;
+}
 </style>

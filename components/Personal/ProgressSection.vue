@@ -1,49 +1,38 @@
 <template>
-  <v-card>
-    <v-card-title>Progresso</v-card-title>
-    <v-card-text>
-      <h3>Badges</h3>
-      <v-row>
-        <v-col
-          v-for="badge in badges"
-          :key="badge.id"
-          xs="12"
-          sm="6"
-          md="4"
-          lg="3"
+  <div class="glass-panel">
+    <div style="padding-bottom: 16px;">Progresso</div>
+    <div>
+        <div
+          v-for="(item, index) in progress"
+          :key="index"
           class="mb-4"
         >
-          <v-card>
-            <v-img :src="badge.image" height="150px" />
-            <v-card-title>{{ badge.name }}</v-card-title>
-          </v-card>
-        </v-col>
-      </v-row>
-      <h3>Card Collection</h3>
-      <v-row>
-        <v-col
-          v-for="card in cards"
-          :key="card.id"
-          xs="12"
-          sm="6"
-          md="4"
-          lg="3"
-          class="mb-4"
-        >
-          <v-card>
-            <v-img :src="card.image" height="150px" />
-            <v-card-title>{{ card.name }}</v-card-title>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card>
+        <div class="slider-container">
+          <p class="slider-title">
+            {{ item.title }}
+          </p>
+        <v-progress-linear
+          rounded
+          :value="item.completed"
+          min="0"
+          max="100"
+          style="width:80% !important; border-radius: 8px;"
+          color="#5dfcc2"
+          background-color="#003333"
+        />
+        <p class="slider-info">
+          {{ item.completed }} %
+        </p>
+      </div>
+        </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
-    badges: {
+    progress: {
       type: Array,
       required: true
     },
@@ -56,4 +45,18 @@ export default {
 </script>
 
 <style scoped>
+.glass-panel {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 15px;
+}
+.v-progress-linear__determinate {
+    height: inherit;
+    left: 0;
+    position: absolute;
+    transition: inherit;
+    border-radius: 8px;
+}
 </style>

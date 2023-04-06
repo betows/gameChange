@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="glass-panel">
     <v-card-title>Meus times</v-card-title>
     <v-card-text>
       <v-row>
@@ -8,11 +8,11 @@
           :key="team.id"
           xs="12"
           sm="6"
-          md="4"
-          lg="3"
+          md="6"
+          lg="4"
           class="mb-4"
         >
-          <v-card>
+          <v-card class="glass-panel">
             <v-card-title>{{ team.name }}</v-card-title>
             <v-card-subtitle>{{ team.description }}</v-card-subtitle>
             <v-card-text>
@@ -44,4 +44,10 @@ export default {
 </script>
 
 <style scoped>
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 15px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="bg-app">
     <v-navigation-drawer
       :value="drawer"
       :mini-variant="miniVariant"
@@ -96,6 +96,12 @@ export default {
 }
 </script>
 <style scoped>
+.bg-app {
+  padding: 0px;
+  background-image: url('https://images.hdqwalls.com/wallpapers/dark-blue-green-gradient-4k-i4.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .transparent-app-bar {
   background-color: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px) !important;

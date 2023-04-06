@@ -1,59 +1,40 @@
 <template>
-  <v-main class="main-container">
+  <v-main style="padding-top: 0px;">
     <v-container fluid>
-      <v-row class="mb-4">
+      <!-- <v-row class="mb-4">
         <v-col cols="12">
           <h1 style="padding-left: 22px;" class="display-1 white--text">
             Dashboard
           </h1>
         </v-col>
-      </v-row>
+      </v-row> -->
       <v-row>
-        <v-col md="4" sm="12">
-          <profile-section :user="user" />
+        <v-col style="height: 50%;" md="4" sm="12">
+          <profile-section :user="user" :badges="badges" />
         </v-col>
         <v-col md="8" sm="12">
-          <v-expansion-panels flat accordion class="glass-panel">
-            <v-expansion-panel>
-              <v-expansion-panel-header class="white--text">
-                Teams
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <team-section :teams="teams" />
-              </v-expansion-panel-content>
-            </v-expansion-panel>
+          <v-row>
+            <v-col style="height: 50%;" md="10" sm="2" class="mb-4">
+              <team-section :teams="teams" />
+            </v-col>
+            <v-col style="height: 50%;" md="10" sm="2" class="mb-4">
+              <task-section :tasks="tasks" />
+            </v-col>
 
-            <v-expansion-panel>
-              <v-expansion-panel-header>Tasks</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <task-section :tasks="tasks" />
-              </v-expansion-panel-content>
-            </v-expansion-panel>
+            <v-col style="height: 50%;" md="10" sm="2" class="mb-4">
+              <progress-section :progress="progress" />
+            </v-col>
 
-            <v-expansion-panel>
-              <v-expansion-panel-header>Progress</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <progress-section :progress="progress" />
-              </v-expansion-panel-content>
-            </v-expansion-panel>
+            <v-col style="height: 50%;" md="6" sm="2" class="mb-4">
+              <badge-section :badges="badges" />
+            </v-col>
 
-            <v-expansion-panel>
-              <v-expansion-panel-header>Badges</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <badge-section :badges="badges" />
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-
-            <v-expansion-panel>
-              <v-expansion-panel-header>Collection</v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <collection-section :cards="cards" />
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+            <v-col style="height: 50%;" md="6" sm="2" class="mb-4">
+              <collection-section :cards="cards" />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
-      </div>
     </v-container>
   </v-main>
 </template>
@@ -129,13 +110,17 @@ export default {
       badges: [
         {
           id: 1,
-          name: 'Badge 1',
-          image: 'https://via.placeholder.com/50'
+          name: 'Voando alto',
+          icon: 'mdi-rocket',
+          color: 'red',
+          description: 'Obtido após ter concluído 10 tarefas'
         },
         {
           id: 2,
-          name: 'Badge 2',
-          image: 'https://via.placeholder.com/50'
+          name: 'Nunca atrasado',
+          icon: 'mdi-timer-sand',
+          color: 'blue',
+          description: 'Obtido por nunca ter atrasado a entrega de uma tarefa'
         }
       ],
       cards: [
@@ -147,7 +132,11 @@ export default {
           power: 7,
           attack: 4,
           defense: 6,
-          image: 'https://via.placeholder.com/100'
+          image: require('@/assets/astronaut.png'),
+          aquired: {
+            date: '2021-04-10',
+            detail: 'Adiquirido após conseguir o badge "Voando Alto"'
+          }
         },
         {
           id: 2,
@@ -157,17 +146,25 @@ export default {
           power: 5,
           attack: 6,
           defense: 3,
-          image: 'https://via.placeholder.com/100'
+          image: require('@/assets/catknight.png'),
+          aquired: {
+            date: '2022-05-10',
+            detail: 'Adiquirido após colaborar por um ano na empresa'
+          }
         },
         {
           id: 2,
-          name: 'Cat Knight',
+          name: 'The Crew',
           rarity: this.getRarity('common'),
           class: 'Feline Warrior',
           power: 5,
           attack: 6,
           defense: 3,
-          image: 'https://via.placeholder.com/100'
+          image: require('@/assets/allcharacters1.png'),
+          aquired: {
+            date: '2023-05-10',
+            detail: 'Adiquirido ao concluír mais de 30 tarefas'
+          }
         }
       ]
     }
@@ -176,11 +173,11 @@ export default {
     getRarity (rarity) {
       switch (rarity) {
         case 'common':
-          return 'mdi-shield-crown-outline'
+          return {icon: 'mdi-shield-crown-outline', color: 'teal'}
         case 'rare':
-          return 'mdi-shield-sword-outline'
+          return {icon: 'mdi-shield-sword-outline', color: 'orange'}
         case 'epic':
-          return 'Épico'
+          return {icon: 'mdi-shield', color: 'purple'}
         case 'legendary':
           return 'Lendário'
       }
@@ -189,27 +186,16 @@ export default {
 }
 </script>
 <style scoped>
-.main-container {
-  padding: 0px;
-  background-image: url('https://cdn.wallpapersafari.com/34/43/YG9nle.jpg');
-  background-size: cover;
-  background-position: center;
-}
 
 .glass-panel {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   padding: 15px;
+  height: 100%;
 }
 
-.v-expansion-panel-header {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(10px) !important;
-  border-radius: 5px !important;
-}
-
-.v-expansion-panel-content {
+.v-card-text {
   background-color: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(10px) !important;
   border-radius: 5px !important;
