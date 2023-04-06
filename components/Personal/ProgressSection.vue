@@ -35,10 +35,6 @@ export default {
     progress: {
       type: Array,
       required: true
-    },
-    cards: {
-      type: Array,
-      required: true
     }
   }
 }

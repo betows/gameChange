@@ -55,6 +55,15 @@ export default {
 
 .card-container:hover {
   transform: translateY(-5px);
+  box-shadow:
+      0 0 6px #fff,
+      0 0 8px #fff,
+      0 0 16px #fff,
+      0 0 28px #0fa,
+      0 0 42px #0fa,
+      0 0 64px #0fa,
+      0 0 82px #0fa,
+      0 0 102px #0fa;
 }
 .glass-panel {
   background-color: rgba(255, 255, 255, 0.1);

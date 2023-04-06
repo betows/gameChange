@@ -55,12 +55,7 @@ export default {
 }
 .badge-section:hover {
   transform: translateY(-5px);
-}
-.neon-text {
-
-}
-.neon-text:hover{
-    color: #fff;
+  color: #fff;
   text-shadow:
       0 0 7px #fff,
       0 0 10px #fff,

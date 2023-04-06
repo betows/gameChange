@@ -1,6 +1,7 @@
 <template>
   <v-app class="bg-app">
     <v-navigation-drawer
+      class="transparent-app-bar"
       :value="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -23,14 +24,14 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title >{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app class="transparent-app-bar">
       <v-app-bar-nav-icon class="white--text" @click.stop="drawer = !drawer" />
-      <v-toolbar-title class="white--text">
+      <v-toolbar-title style="cursor: pointer" @click="$router.push('/')" class="white--text">
         {{ title }}
       </v-toolbar-title>
       <v-spacer />
