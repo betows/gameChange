@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       :value="drawer"
       :mini-variant="miniVariant"
@@ -28,17 +28,15 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+    <v-app-bar :clipped-left="clipped" fixed app class="transparent-app-bar">
+      <v-app-bar-nav-icon class="white--text" @click.stop="drawer = !drawer" />
+      <v-toolbar-title class="white--text">
+        {{ title }}
+      </v-toolbar-title>
       <v-spacer />
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container style="max-width: 100%">
         <Nuxt />
       </v-container>
     </v-main>
@@ -97,3 +95,15 @@ export default {
   }
 }
 </script>
+<style scoped>
+.transparent-app-bar {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.v-icon,
+.v-list-item-title {
+  color: white !important;
+}
+</style>

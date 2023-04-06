@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="glass-panel">
     <v-card-title>Perfil</v-card-title>
     <v-card-text>
       <v-avatar size="150" class="mb-3">
@@ -34,5 +34,11 @@ export default {
 <style scoped>
 .v-avatar img {
   cursor: pointer;
+}
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 15px;
 }
 </style>
