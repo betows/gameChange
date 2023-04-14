@@ -2,15 +2,10 @@
   <v-card class="glass-panel">
     <v-card-title>Meus cards</v-card-title>
     <v-card-text>
-      <v-row>
-        <v-col
+      <div class="cards-grid">
+        <div
           v-for="card in cards"
           :key="card.id"
-          xs="12"
-          sm="6"
-          md="4"
-          lg="6"
-          class="mb-4"
         >
           <v-tooltip top>
             <template #activator="{ on }">
@@ -32,8 +27,8 @@
             </template>
             <span>Obtido em: {{ card.aquired.date }}. {{ card.aquired.detail }}. </span>
           </v-tooltip>
-        </v-col>
-      </v-row>
+        </div>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -55,7 +50,11 @@ export default {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
 }
-
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 44px;
+}
 .card-container:hover {
   transform: translateY(-5px);
 }

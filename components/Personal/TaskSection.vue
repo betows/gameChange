@@ -16,7 +16,7 @@
             <v-card-title>{{ task.title }}</v-card-title>
             <v-card-subtitle>{{ task.description }}</v-card-subtitle>
             <v-card-text>
-              <div>Due Date: {{ task.dueDate }}</div>
+              <div>Prazo de entrega: {{ task.deadline }}</div>
               <div>Status: {{ task.status }}</div>
             </v-card-text>
           </v-card>

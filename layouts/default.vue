@@ -24,14 +24,14 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title >{{ item.title }}</v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app class="transparent-app-bar">
       <v-app-bar-nav-icon class="white--text" @click.stop="drawer = !drawer" />
-      <v-toolbar-title style="cursor: pointer" @click="$router.push('/')" class="white--text">
+      <v-toolbar-title style="cursor: pointer" class="white--text" @click="$router.push('/')">
         {{ title }}
       </v-toolbar-title>
       <v-spacer />
@@ -62,7 +62,7 @@ export default {
         {
           icon: 'mdi-plus',
           title: 'Create Task',
-          to: '/task/create-task'
+          to: '/tasks/create-task'
         },
         {
           icon: 'mdi-apps',

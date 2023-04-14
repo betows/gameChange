@@ -76,7 +76,7 @@ export default {
           ]
         }
       ],
-      tasks: [
+      /* tasks: [
         {
           id: 1,
           title: 'Implementar login',
@@ -91,7 +91,7 @@ export default {
           deadline: '2023-04-20',
           status: 'Completed'
         }
-      ],
+      ], */
       progress: [
         {
           id: 1,
@@ -165,6 +165,19 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    tasks () {
+      return this.$store.state.tasks.tasks
+    }
+  },
+  watch: {
+    tasks (newTasks) {
+      console.log(newTasks)
+    }
+  },
+  mounted () {
+    console.log(this.tasks)
   },
   methods: {
     getRarity (rarity) {
