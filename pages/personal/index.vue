@@ -1,42 +1,39 @@
 <template>
-  <v-main style="padding-top: 0px;">
-    <v-container fluid>
-      <!-- <v-row class="mb-4">
-        <v-col cols="12">
-          <h1 style="padding-left: 22px;" class="display-1 white--text">
-            Dashboard
-          </h1>
-        </v-col>
-      </v-row> -->
-      <v-row>
-        <v-col style="height: 50%;" md="4" sm="12">
+  <div style="padding-top: 0px;">
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: flex; flex-direction: row; justify-content: space-between">
+        <div
+          style="height: 50%; display: flex; flex-direction: column; max-width: 40%;"
+          md="4"
+          sm="12"
+        >
           <profile-section :user="user" :badges="badges" />
-        </v-col>
-        <v-col md="8" sm="12">
-          <v-row>
-            <v-col style="height: 50%;" md="10" sm="2" class="mb-4">
+        </div>
+        <div style="width: 65%">
+          <div>
+            <div style="height: 50%;" md="10" sm="2" class="mb-4">
               <team-section :teams="teams" />
-            </v-col>
-            <v-col style="height: 50%;" md="10" sm="2" class="mb-4">
+            </div>
+            <div style="height: 50%;" md="10" sm="2" class="mb-4">
               <task-section :tasks="tasks" />
-            </v-col>
+            </div>
 
-            <v-col style="height: 50%;" md="10" sm="2" class="mb-4">
+            <div style="height: 50%;" md="10" sm="2" class="mb-4">
               <progress-section :progress="progress" />
-            </v-col>
+            </div>
 
-            <v-col style="height: 50%;" md="6" sm="2" class="mb-4">
+            <div style="height: 50%;" md="6" sm="2" class="mb-4">
               <badge-section :badges="badges" />
-            </v-col>
+            </div>
 
-            <v-col style="height: 50%;" md="6" sm="2" class="mb-4">
+            <div style="height: 50%;" md="6" sm="2" class="mb-4">
               <collection-section :cards="cards" />
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -111,14 +108,14 @@ export default {
         {
           id: 1,
           name: 'Voando alto',
-          icon: 'mdi-rocket',
+          img: '/flyingHigh.png',
           color: 'red',
           description: 'Obtido após ter concluído 10 tarefas'
         },
         {
           id: 2,
           name: 'Nunca atrasado',
-          icon: 'mdi-timer-sand',
+          img: '/molecular.png',
           color: 'blue',
           description: 'Obtido por nunca ter atrasado a entrega de uma tarefa'
         }
@@ -173,11 +170,11 @@ export default {
     getRarity (rarity) {
       switch (rarity) {
         case 'common':
-          return {icon: 'mdi-shield-crown-outline', color: 'teal'}
+          return { icon: 'mdi-shield-crown-outline', color: 'teal' }
         case 'rare':
-          return {icon: 'mdi-shield-sword-outline', color: 'orange'}
+          return { icon: 'mdi-shield-sword-outline', color: 'orange' }
         case 'epic':
-          return {icon: 'mdi-shield', color: 'purple'}
+          return { icon: 'mdi-shield', color: 'purple' }
         case 'legendary':
           return 'Lendário'
       }

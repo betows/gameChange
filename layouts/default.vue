@@ -60,6 +60,11 @@ export default {
       fixed: false,
       items: [
         {
+          icon: 'mdi-plus',
+          title: 'Create Task',
+          to: '/task/create-task'
+        },
+        {
           icon: 'mdi-apps',
           title: 'Dashboard',
           to: '/personal'
@@ -98,7 +103,7 @@ export default {
 </script>
 <style scoped>
 .bg-app {
-  padding: 0px;
+  padding: 4px;
   background-image: url('https://images.hdqwalls.com/wallpapers/dark-blue-green-gradient-4k-i4.jpg');
   background-size: cover;
   background-position: center;

@@ -2,27 +2,25 @@
   <v-card class="glass-panel">
     <v-card-title>Meus Badges</v-card-title>
     <v-card-text>
-      <v-row>
-        <v-col
+      <div style="display: flex; gap: 14px;">
+        <div
           v-for="badge in badges"
           :key="badge.id"
-          xs="12"
-          sm="12"
-          md="8"
-          lg="6"
-          class="mb-4"
+          style="width: 208px;"
         >
-        <v-tooltip bottom>
-        <template #activator="{ on }">
-          <v-card v-on="on" class="glass-panel badge-section">
-            <v-icon class="neon-text" large :color="badge.color"> {{ badge.icon}} </v-icon>
-            <v-card-title class="neon-text">{{ badge.name }}</v-card-title>
-          </v-card>
-          </template>
-        <span>{{ badge.description }}</span>
-      </v-tooltip>
-        </v-col>
-      </v-row>
+          <v-tooltip bottom>
+            <template #activator="{ on }">
+              <v-card class="glass-panel badge-section" v-on="on">
+                <v-img :src="badge.img" class="neon-text" large :color="badge.color" />
+                <v-card-title class="neon-text">
+                  {{ badge.name }}
+                </v-card-title>
+              </v-card>
+            </template>
+            <span>{{ badge.description }}</span>
+          </v-tooltip>
+        </div>
+      </div>
     </v-card-text>
   </v-card>
 </template>

@@ -2,16 +2,28 @@
   <v-card class="glass-panel">
     <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
       <v-card-title>Perfil</v-card-title>
-        <div style="display: flex; align-items: center;">
-          <div :style="index == 0 ? 'padding-left: 200px; gap 12px;' : 'gap: 12px;'" v-for="(badge, index) in badges" :key="index">
-            <v-icon class="neon-text" :color="badge.color"> {{ badge.icon }} </v-icon>
-          </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div v-for="(badge, index) in badges" :key="index" class="neon-text" :style="index == 0 ? 'padding-left: 200px; gap 12px;' : 'gap: 12px;'">
+          <v-tooltip bottom>
+            <template #activator="{ on }">
+              <v-img width="24" :src="badge.img" large :color="badge.color" v-on="on" />
+            </template>
+            <span>{{ badge.name + ': ' + badge.description }}</span>
+          </v-tooltip>
         </div>
+      </div>
     </div>
     <v-card-text>
       <v-avatar size="126" class="mb-3">
-        <img :src="user.image" @click="updateProfileImage">
+        <img :src="user.image" @click="openFileInput">
       </v-avatar>
+      <input
+        ref="fileInput"
+        type="file"
+        accept="image/*"
+        style="display: none;"
+        @change="updateProfileImage"
+      >
       <div class="mt-3">
         <div class="font-weight-bold">
           {{ user.name }}
@@ -35,6 +47,23 @@ export default {
     }
   },
   methods: {
+    openFileInput () {
+      this.$refs.fileInput.click()
+    },
+    updateProfileImage (event) {
+      const file = event.target.files[0]
+      if (!file) { return }
+
+      // Preview the selected image
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        this.user.image = e.target.result
+      }
+      reader.readAsDataURL(file)
+
+    // Implement the logic to upload the image to the server
+    // ...
+    },
     updateProfileImage () {
       // Implement the logic to update the user's profile image
     }

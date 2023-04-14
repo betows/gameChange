@@ -12,23 +12,26 @@
           lg="6"
           class="mb-4"
         >
-        <v-tooltip top>
-        <template #activator="{ on }">
-          <v-card v-on="on" class="text-center card-container">
-            <v-img :src="card.image" height="200px" class="mx-auto" />
-            <v-card-title>{{ card.name }}</v-card-title>
-            <v-card-subtitle style="display: flex;" >{{ card.class }}
-              <v-icon style="padding-left: 4px;" :color="card.rarity.color" small> {{ card.rarity.icon }} </v-icon>
-              </v-card-subtitle> 
-            <v-card-text style="display: flex;flex-direction: column;align-items: flex-start;">
-              <span>Power: {{ card.power }}</span>
-              <span>Attack: {{ card.attack }}</span>
-              <span>Defense: {{ card.defense }}</span>
-            </v-card-text>
-          </v-card>
-          </template>
-        <span>Obtido em: {{ card.aquired.date }}. {{ card.aquired.detail }}. </span>
-      </v-tooltip>
+          <v-tooltip top>
+            <template #activator="{ on }">
+              <v-card class="text-center card-container" v-on="on">
+                <v-img :src="card.image" height="200px" class="mx-auto" />
+                <v-card-title>{{ card.name }}</v-card-title>
+                <v-card-subtitle style="display: flex;">
+                  {{ card.class }}
+                  <v-icon style="padding-left: 4px;" :color="card.rarity.color" small>
+                    {{ card.rarity.icon }}
+                  </v-icon>
+                </v-card-subtitle>
+                <v-card-text style="display: flex;flex-direction: column;align-items: flex-start;">
+                  <span>Power: {{ card.power }}</span>
+                  <span>Attack: {{ card.attack }}</span>
+                  <span>Defense: {{ card.defense }}</span>
+                </v-card-text>
+              </v-card>
+            </template>
+            <span>Obtido em: {{ card.aquired.date }}. {{ card.aquired.detail }}. </span>
+          </v-tooltip>
         </v-col>
       </v-row>
     </v-card-text>
@@ -55,15 +58,6 @@ export default {
 
 .card-container:hover {
   transform: translateY(-5px);
-  box-shadow:
-      0 0 6px #fff,
-      0 0 8px #fff,
-      0 0 16px #fff,
-      0 0 28px #0fa,
-      0 0 42px #0fa,
-      0 0 64px #0fa,
-      0 0 82px #0fa,
-      0 0 102px #0fa;
 }
 .glass-panel {
   background-color: rgba(255, 255, 255, 0.1);
