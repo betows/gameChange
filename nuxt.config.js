@@ -70,7 +70,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    ['@nuxtjs/axios', { baseURL: process.env.API_URL, browserBaseURL: process.env.API_URL_BROWSER || process.env.API_URL }],
     '@nuxtjs/toast',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
@@ -94,7 +94,7 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    optionsPath: './vuetify.options.js',
+    optionsPath: './vuetify.options.js'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

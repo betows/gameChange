@@ -83,7 +83,7 @@
                 required
               />
               <v-btn color="primary" :disabled="!valid" @click="submitForm">
-                Create Task
+                Criar tarefa
               </v-btn>
             </v-form>
           </v-card-text>

@@ -7,27 +7,32 @@
           md="4"
           sm="12"
         >
-          <profile-section :user="user" :badges="badges" />
+          <ProfileSection :user="user" :badges="badges" />
         </div>
         <div style="width: 65%">
           <div>
             <div style="height: 50%;" md="10" sm="2" class="mb-4">
-              <team-section :teams="teams" />
+              <TeamSection :teams="teams" />
+            </div>
+            <div v-if="tasks.length > 0" style="height: 50%;" md="10" sm="2" class="mb-4">
+              <TaskSection :tasks="tasks" />
             </div>
             <div style="height: 50%;" md="10" sm="2" class="mb-4">
-              <task-section :tasks="tasks" />
+              <!-- <h2>Conquistas</h2>
+              <div class="achievements-grid">
+                <Achievement v-for="achievement in userAchievements" :key="achievement.id" :achievement="achievement" />
+              </div> -->
             </div>
-
             <div style="height: 50%;" md="10" sm="2" class="mb-4">
-              <progress-section :progress="progress" />
+              <ProgressSection :progress="progress" />
             </div>
 
             <div style="height: 50%;" md="6" sm="2" class="mb-4">
-              <badge-section :badges="badges" />
+              <BadgeSection :badges="badges" />
             </div>
 
             <div style="height: 50%;" md="6" sm="2" class="mb-4">
-              <collection-section :cards="cards" />
+              <CollectionSection :cards="cards" />
             </div>
           </div>
         </div>
@@ -43,6 +48,7 @@ import TaskSection from '@/components/Personal/TaskSection.vue'
 import ProgressSection from '@/components/Personal/ProgressSection.vue'
 import BadgeSection from '@/components/Personal/BadgeSection.vue'
 import CollectionSection from '@/components/Personal/CollectionSection.vue'
+import Achievement from '@/components/Achievements/Achievement.vue'
 
 export default {
   components: {
@@ -51,7 +57,8 @@ export default {
     TaskSection,
     ProgressSection,
     BadgeSection,
-    CollectionSection
+    CollectionSection,
+    Achievement
   },
   data () {
     return {
@@ -118,6 +125,20 @@ export default {
           img: '/molecular.png',
           color: 'blue',
           description: 'Obtido por nunca ter atrasado a entrega de uma tarefa'
+        }
+      ],
+      userAchievements: [
+        {
+          id: 1,
+          name: 'Mestre das Tarefas',
+          description: 'Complete 50 tarefas',
+          icon: 'mdi-shield-crown-outline'
+        },
+        {
+          id: 2,
+          name: 'Colaborador Exemplar',
+          description: 'Contribua em 10 projetos diferentes',
+          icon: 'mdi-shield-crown-outline'
         }
       ],
       cards: [
